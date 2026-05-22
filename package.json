@@ -14,6 +14,9 @@
     "release:beta": "pnpm run build && pnpm run version:beta && pnpm run publish:beta",
     "release": "pnpm run build && pnpm run version:release && pnpm run publish:release"
   },
+  "dependencies": {
+    "axios": "^1.16.1"
+  },
   "license": "Apache-2.0",
   "main": "src/index.ts",
   "module": "src/index.ts",
