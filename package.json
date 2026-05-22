@@ -1,0 +1,72 @@
+{
+  "name": "mfront-default-libs",
+  "version": "0.0.5-alpha.57",
+  "description": "mFront Library Default Implementation",
+  "scripts": {
+    "build": "tsdown",
+    "version:alpha": "pnpm version prerelease --preid alpha --no-git-tag-version --no-git-checks",
+    "version:beta": "pnpm version prerelease --preid beta --no-git-tag-version --no-git-checks",
+    "version:release": "pnpm version patch --no-git-tag-version --no-git-checks",
+    "publish:alpha": "pnpm publish --tag alpha --no-git-checks",
+    "publish:beta": "pnpm publish --tag beta --no-git-checks",
+    "publish:release": "pnpm publish --tag latest --no-git-checks",
+    "release:alpha": "pnpm run build && pnpm run version:alpha && pnpm run publish:alpha",
+    "release:beta": "pnpm run build && pnpm run version:beta && pnpm run publish:beta",
+    "release": "pnpm run build && pnpm run version:release && pnpm run publish:release"
+  },
+  "license": "Apache-2.0",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "author": {
+    "name": "Bangla Fighter",
+    "url": "https://banglafighter.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/banglafighter/mfront-default-libs"
+  },
+  "homepage": "https://github.com/banglafighter/mfront-default-libs#readme",
+  "bugs": {
+    "url": "https://github.com/banglafighter/mfront-default-libs/issues"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "exports": {
+    "./style": "./src/mfront-default-style.css",
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "./style": "./dist/mfront-default-style.css"
+    }
+  },
+  "keywords": [
+    "mfront-default-libs",
+    "mfront",
+    "mweb",
+    "maintainable",
+    "react",
+    "frontend",
+    "framework",
+    "router",
+    "mapend"
+  ]
+}
