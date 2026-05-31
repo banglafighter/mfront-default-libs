@@ -7,6 +7,7 @@ export const AxiosHTTPClient: HTTPClient = {
     async request<TData = unknown, TBody = unknown, TQuery = unknown>(request: HTTPRequest<TBody, TQuery>, hooks?: HTTPHooks<TData> ): Promise<HTTPResponse<TData>> {
         const {config} = useAppContext.get()
         try {
+            hooks?.before?.(request as  HTTPRequest)
 
             let baseURL: string | undefined = undefined
             if (request.baseURL) {
