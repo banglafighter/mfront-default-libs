@@ -4,10 +4,10 @@ import {useAppContext} from "mfront";
 
 
 export const AxiosHTTPClient: HTTPClient = {
-    async request<TData = unknown, TBody = unknown, TQuery = unknown>(request: HTTPRequest<TBody, TQuery>, hooks?: HTTPHooks<TData> ): Promise<HTTPResponse<TData>> {
+    async request<TResponseBody = unknown, TRequestBody = unknown, TRequestQuery = unknown>(request: HTTPRequest<TRequestBody, TRequestQuery>, hooks?: HTTPHooks<TResponseBody, TRequestBody, TRequestQuery>): Promise<HTTPResponse<TResponseBody>> {
         const {config} = useAppContext.get()
         try {
-            hooks?.before?.(request as  HTTPRequest)
+            hooks?.before?.(request)
 
             let baseURL: string | undefined = undefined
             if (request.baseURL) {
@@ -16,7 +16,7 @@ export const AxiosHTTPClient: HTTPClient = {
                 baseURL = config.apiBaseUrl
             }
 
-            const axiosRequest = await axios.request<TData>({
+            const axiosRequest = await axios.request<TResponseBody>({
                 url: request.url,
                 baseURL: baseURL,
                 method: request.method,
@@ -27,7 +27,7 @@ export const AxiosHTTPClient: HTTPClient = {
                 responseType: request.responseType,
             });
 
-            const response: HTTPResponse<TData> = {
+            const response: HTTPResponse<TResponseBody> = {
                 isSuccess: true,
                 statusCode: axiosRequest.status,
                 body: axiosRequest.data,
@@ -40,7 +40,7 @@ export const AxiosHTTPClient: HTTPClient = {
             return response;
 
         } catch (err: any) {
-            const response: HTTPResponse<TData> = {
+            const response: HTTPResponse<TResponseBody> = {
                 isSuccess: false,
                 statusCode: err?.response?.status ?? 0,
                 body: null,
