@@ -1,6 +1,6 @@
 {
   "name": "mfront-default-libs",
-  "version": "0.0.5-alpha.77",
+  "version": "0.0.5-alpha.79",
   "description": "mFront Library Default Implementation",
   "scripts": {
     "build": "tsdown",
